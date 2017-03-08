@@ -12,15 +12,7 @@ public class Calculator {
 
         int operatorPosition = getOperatorPosition(expression);
 
-        boolean isNotValid = false;
-        for (int i = 0; i < expression.length(); i++) {
-            if (expression.charAt(i) == '+') {
-                continue;
-            }
-            char d = expression.charAt(i);
-            int in = (d >= '3' & d <= '5')?d-48: NUMBERS.indexOf(d);
-            isNotValid |= (in < 0) || in >= base;
-        }
+        boolean isNotValid = checkValid(expression, base);
 
         String out = expression.substring(0, operatorPosition);
 
@@ -43,6 +35,19 @@ public class Calculator {
         String result = toString(sum, base);
 
         return result;
+    }
+
+    private boolean checkValid(String expression, int base) {
+        boolean isNotValid = false;
+        for (int i = 0; i < expression.length(); i++) {
+            if (expression.charAt(i) == '+') {
+                continue;
+            }
+            char d = expression.charAt(i);
+            int in = (d >= '3' & d <= '5')?d-48: NUMBERS.indexOf(d);
+            isNotValid |= (in < 0) || in >= base;
+        }
+        return isNotValid;
     }
 
     private int getOperatorPosition(String expr) {
