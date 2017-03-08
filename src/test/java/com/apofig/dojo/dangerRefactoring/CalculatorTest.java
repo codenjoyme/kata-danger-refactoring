@@ -33,13 +33,17 @@ public class CalculatorTest {
 
     @Test
     public void shouldException_whenBaseIsNotANumber() {
+        String wrongBase = "qwe";
+        assertException("1+1", wrongBase,
+                "java.lang.IllegalArgumentException: Invalid base");
+    }
+
+    private void assertException(String expression, String base, String expected) {
         try {
-            String wrong = "qwe";
-            assertCalculate("1+1", wrong, "10");
+            assertCalculate(expression, base, "inessential");
             fail("Expected exception");
         } catch (Exception e) {
-            assertEquals("java.lang.IllegalArgumentException: Invalid base",
-                    e.toString());
+            assertEquals(expected, e.toString());
         }
     }
 
