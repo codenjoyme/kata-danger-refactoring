@@ -45,7 +45,7 @@ public class Calculator {
             }
             char d = expression.charAt(i);
             int in = (d >= '3' & d <= '5')?d-48: NUMBERS.indexOf(d);
-            result &= !((in < 0) || in >= base);
+            result &= (in >= 0) && in < base;
         }
         return result;
     }
