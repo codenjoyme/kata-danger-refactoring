@@ -58,16 +58,16 @@ public class Calculator {
 
         sum += sum2;
 
-        String res = "";
+        String result = "";
         long l = sum;
         do {
             int h = (int)(l % base);
             l = l / base;
             String digits = "GFEDCBA9876543210";
-            res = digits.charAt(16 - h) + res;
+            result = digits.charAt(16 - h) + result;
         } while (l >= 1);
 
-        return res;
+        return result;
     }
 
 }
