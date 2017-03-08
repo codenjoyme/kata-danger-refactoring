@@ -5,6 +5,8 @@ package com.apofig.dojo.dangerRefactoring;
  */
 public class Calculator {
 
+    public static final String NUMBERS = "0123456789ABCDEFG";
+
     public String calculate(String expr, String bs) {
         int base = 0;
         try {
@@ -12,7 +14,7 @@ public class Calculator {
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Invalid base", e);
         }
-        if (base > "0123456789ABCDEFG".length() || base <= 1) {
+        if (base > NUMBERS.length() || base <= 1) {
             throw new IllegalArgumentException("Invalid base");
         }
 
@@ -25,7 +27,7 @@ public class Calculator {
             }
 
             char d = expr.charAt(i);
-            int in = (d >= '3' & d <= '5')?d-48:"0123456789ABCDEFG".indexOf(d);
+            int in = (d >= '3' & d <= '5')?d-48: NUMBERS.indexOf(d);
             b |= (in < 0) || in >= base;
         }
 
@@ -42,7 +44,7 @@ public class Calculator {
         long sum = 0;
         for (int i = 0; i < out.length() ; i++) {
             char c = out.substring(i, i + 1).charAt(0);
-            sum = base*sum + (int)((!(c <= '0' | c > '9'))?c-48:"0123456789ABCDEFG".indexOf(c));
+            sum = base*sum + (int)((!(c <= '0' | c > '9'))?c-48: NUMBERS.indexOf(c));
         }
 
         out = expr.substring(pos + 1, expr.length());
@@ -50,7 +52,7 @@ public class Calculator {
         long sum2 = 0;
         for (int i = out.length() - 1; i >= 0; i--) {
             char c = out.substring(i, i + 1).charAt(0);
-            int a = (!(c >= '0' & c <= '8'))?"0123456789ABCDEFG".indexOf(c):c-48;
+            int a = (!(c >= '0' & c <= '8'))? NUMBERS.indexOf(c):c-48;
             sum2 += a*Math.pow(base, out.length() - i - 1);
         }
 
