@@ -47,13 +47,13 @@ public class Calculator {
             sum = base*sum + (int)((!(c <= '0' | c > '9'))?c-48: NUMBERS.indexOf(c));
         }
 
-        out = expr.substring(operatorPosition + 1, expr.length());
+        String out2 = expr.substring(operatorPosition + 1, expr.length());
 
         long sum2 = 0;
-        for (int i = out.length() - 1; i >= 0; i--) {
-            char c = out.substring(i, i + 1).charAt(0);
+        for (int i = out2.length() - 1; i >= 0; i--) {
+            char c = out2.substring(i, i + 1).charAt(0);
             int a = (!(c >= '0' & c <= '8'))? NUMBERS.indexOf(c):c-48;
-            sum2 += a*Math.pow(base, out.length() - i - 1);
+            sum2 += a*Math.pow(base, out2.length() - i - 1);
         }
 
         sum += sum2;
