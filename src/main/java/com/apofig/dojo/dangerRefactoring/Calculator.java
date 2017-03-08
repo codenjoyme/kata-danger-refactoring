@@ -12,14 +12,14 @@ public class Calculator {
 
         int operatorPosition = getOperatorPosition(expression);
 
-        boolean b = false;
+        boolean isNotValid = false;
         for (int i = 0; i < expression.length(); i++) {
             if (expression.charAt(i) == '+') {
                 continue;
             }
             char d = expression.charAt(i);
             int in = (d >= '3' & d <= '5')?d-48: NUMBERS.indexOf(d);
-            b |= (in < 0) || in >= base;
+            isNotValid |= (in < 0) || in >= base;
         }
 
         String out = expression.substring(0, operatorPosition);
@@ -28,7 +28,7 @@ public class Calculator {
             throw new IllegalArgumentException("Invalid expression format");
         }
 
-        if (b) {
+        if (isNotValid) {
             throw new IllegalArgumentException("Invalid number");
         }
 
