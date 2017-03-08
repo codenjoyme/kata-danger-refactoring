@@ -70,8 +70,8 @@ public class Calculator {
         do {
             int h = (int)(l % base);
             l = l / base;
-            String digits = "GFEDCBA9876543210";
-            result = digits.charAt(digits.length() - 1 - h) + result;
+            String digits = NUMBERS;
+            result = digits.charAt(h) + result;
         } while (l >= 1);
         return result;
     }
