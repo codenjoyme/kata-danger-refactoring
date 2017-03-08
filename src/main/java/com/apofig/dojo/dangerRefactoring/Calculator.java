@@ -64,9 +64,9 @@ public class Calculator {
     }
 
     // TODO change qwe name
-    private String qwe(int base, long sum) {
+    private String qwe(int base, long number) {
         String result = "";
-        long l = sum;
+        long l = number;
         do {
             int h = (int)(l % base);
             l = l / base;
