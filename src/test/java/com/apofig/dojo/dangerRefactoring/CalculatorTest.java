@@ -62,6 +62,27 @@ public class CalculatorTest {
                 "java.lang.IllegalArgumentException: Invalid base");
     }
 
+    @Test
+    public void shouldCalculateWorks_when17NumberSystem_checkAllSymbols() {
+        assertCalculate("12+34", "17", "46");
+        assertCalculate("45+67", "17", "AC");
+        assertCalculate("89+1A", "17", "A2");
+        assertCalculate("AB+CD", "17", "167");
+        assertCalculate("EF+FG", "17", "1DE");
+        assertCalculate("GG+11", "17", "110");
+    }
+
+    @Test
+    public void shouldException_whenBadNumberContainsUnexpectedSymbols() {
+        String wrongNumber = "H";
+
+        assertException("1+" + wrongNumber, "17",
+                "java.lang.IllegalArgumentException: Invalid number");
+
+        assertException(wrongNumber + "+1", "17",
+                "java.lang.IllegalArgumentException: Invalid number");
+    }
+
     private void assertException(String expression, String base, String expected) {
         try {
             assertCalculate(expression, base, "inessential");
