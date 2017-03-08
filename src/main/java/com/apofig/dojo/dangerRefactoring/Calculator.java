@@ -71,7 +71,7 @@ public class Calculator {
             int h = (int)(l % base);
             l = l / base;
             String digits = "GFEDCBA9876543210";
-            result = digits.charAt(16 - h) + result;
+            result = digits.charAt(digits.length() - 1 - h) + result;
         } while (l >= 1);
         return result;
     }
