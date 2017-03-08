@@ -10,13 +10,7 @@ public class Calculator {
     public String calculate(String expr, String bs) {
         int base = getBase(bs);
 
-        int operatorPosition = 0;
-        for (int i = 0; i < expr.length(); i++) {
-            if (expr.charAt(i) == '+') {
-                operatorPosition = i;
-                continue;
-            }
-        }
+        int operatorPosition = getOperatorPosition(expr);
 
         boolean b = false;
         for (int i = 0; i < expr.length(); i++) {
@@ -49,6 +43,17 @@ public class Calculator {
         String result = toString(sum, base);
 
         return result;
+    }
+
+    private int getOperatorPosition(String expr) {
+        int operatorPosition = 0;
+        for (int i = 0; i < expr.length(); i++) {
+            if (expr.charAt(i) == '+') {
+                operatorPosition = i;
+                continue;
+            }
+        }
+        return operatorPosition;
     }
 
     private int getBase(String bs) {
