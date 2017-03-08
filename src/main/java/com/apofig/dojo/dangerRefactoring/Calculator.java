@@ -74,21 +74,21 @@ public class Calculator {
         return base;
     }
 
-    private long parse(int base, String out) {
+    private long parse(int base, String string) {
         long sum = 0;
-        for (int i = 0; i < out.length() ; i++) {
-            char c = out.substring(i, i + 1).charAt(0);
+        for (int i = 0; i < string.length() ; i++) {
+            char c = string.substring(i, i + 1).charAt(0);
             sum = base*sum + (int)((!(c <= '0' | c > '9'))?c-48: NUMBERS.indexOf(c));
         }
         return sum;
     }
 
-    private long parse2(int base, String out2) {
+    private long parse2(int base, String string) {
         long result = 0;
-        for (int i = out2.length() - 1; i >= 0; i--) {
-            char c = out2.substring(i, i + 1).charAt(0);
+        for (int i = string.length() - 1; i >= 0; i--) {
+            char c = string.substring(i, i + 1).charAt(0);
             int a = (!(c >= '0' & c <= '8'))? NUMBERS.indexOf(c):c-48;
-            result += a*Math.pow(base, out2.length() - i - 1);
+            result += a*Math.pow(base, string.length() - i - 1);
         }
         return result;
     }
