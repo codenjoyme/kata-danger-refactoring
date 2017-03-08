@@ -10,14 +10,19 @@ public class Calculator {
     public String calculate(String expr, String bs) {
         int base = getBase(bs);
 
-        boolean b = false;
         int operatorPosition = 0;
         for (int i = 0; i < expr.length(); i++) {
             if (expr.charAt(i) == '+') {
                 operatorPosition = i;
                 continue;
             }
+        }
 
+        boolean b = false;
+        for (int i = 0; i < expr.length(); i++) {
+            if (expr.charAt(i) == '+') {
+                continue;
+            }
             char d = expr.charAt(i);
             int in = (d >= '3' & d <= '5')?d-48: NUMBERS.indexOf(d);
             b |= (in < 0) || in >= base;
