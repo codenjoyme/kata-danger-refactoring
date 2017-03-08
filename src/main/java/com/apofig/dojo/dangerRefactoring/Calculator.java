@@ -38,16 +38,16 @@ public class Calculator {
     }
 
     private boolean checkValid(String expression, int base) {
-        boolean valid = true;
+        boolean result = true;
         for (int i = 0; i < expression.length(); i++) {
             if (expression.charAt(i) == '+') {
                 continue;
             }
             char d = expression.charAt(i);
             int in = (d >= '3' & d <= '5')?d-48: NUMBERS.indexOf(d);
-            valid &= !((in < 0) || in >= base);
+            result &= !((in < 0) || in >= base);
         }
-        return valid;
+        return result;
     }
 
     private int getOperatorPosition(String expr) {
