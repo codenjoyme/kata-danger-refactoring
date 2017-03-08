@@ -3,8 +3,9 @@ package com.apofig.dojo.dangerRefactoring;
 /**
  * Created by indigo on 2017-03-08.
  */
-public class CalculatorAssessment {
+public class CalculatorAssessment extends Calculator {
 
+    @Override
     public String calculate(String expr, String bs) {
         int base = 0;
         try {
