@@ -60,13 +60,13 @@ public class Calculator {
 
     //TODO rename method
     private long method(int base, String out2) {
-        long sum2 = 0;
+        long result = 0;
         for (int i = out2.length() - 1; i >= 0; i--) {
             char c = out2.substring(i, i + 1).charAt(0);
             int a = (!(c >= '0' & c <= '8'))? NUMBERS.indexOf(c):c-48;
-            sum2 += a*Math.pow(base, out2.length() - i - 1);
+            result += a*Math.pow(base, out2.length() - i - 1);
         }
-        return sum2;
+        return result;
     }
 
     private String toString(long number, int base) {
