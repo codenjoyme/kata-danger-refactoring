@@ -14,7 +14,7 @@ public class Calculator {
 
         boolean isValid = checkValid(expression, base);
 
-        String out = expression.substring(0, operatorPosition);
+        String number1String = expression.substring(0, operatorPosition);
 
         if (operatorPosition == 0 || operatorPosition == expression.length() || expression.split("[+]").length != 2) {
             throw new IllegalArgumentException("Invalid expression format");
@@ -24,11 +24,11 @@ public class Calculator {
             throw new IllegalArgumentException("Invalid number");
         }
 
-        long sum = method2(base, out);
+        long sum = method2(base, number1String);
 
-        String out2 = expression.substring(operatorPosition + 1, expression.length());
+        String number2String = expression.substring(operatorPosition + 1, expression.length());
 
-        long sum2 = method(base, out2);
+        long sum2 = method(base, number2String);
 
         sum += sum2;
 
