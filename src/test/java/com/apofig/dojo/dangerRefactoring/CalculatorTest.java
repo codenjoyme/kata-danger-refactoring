@@ -254,6 +254,18 @@ public class CalculatorTest {
                 "java.lang.IllegalArgumentException: Invalid number");
     }
 
+    @Test
+    public void shouldException_whenUsedSymbolNotPermittedInThisNumberSystem() {
+        String wrongNumber = "2";
+        String base = "2";
+
+        assertException("1+" + wrongNumber, base,
+                "java.lang.IllegalArgumentException: Invalid number");
+
+        assertException(wrongNumber + "+1", base,
+                "java.lang.IllegalArgumentException: Invalid number");
+    }
+
     private void assertException(String expression, String base, String expected) {
         try {
             assertCalculate(expression, base, "inessential");
