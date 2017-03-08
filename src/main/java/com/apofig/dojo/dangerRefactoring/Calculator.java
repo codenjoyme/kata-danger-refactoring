@@ -28,7 +28,7 @@ public class Calculator {
 
         String number2String = expression.substring(operatorPosition + 1, expression.length());
 
-        long number2 = parse2(base, number2String);
+        long number2 = parse(base, number2String);
 
         number1 += number2;
 
@@ -74,21 +74,12 @@ public class Calculator {
         return base;
     }
 
+
     private long parse(int base, String string) {
         long result = 0;
         for (int i = 0; i < string.length() ; i++) {
             char c = string.substring(i, i + 1).charAt(0);
             result = base*result + NUMBERS.indexOf(c);
-        }
-        return result;
-    }
-
-    private long parse2(int base, String string) {
-        long result = 0;
-        for (int i = string.length() - 1; i >= 0; i--) {
-            char c = string.substring(i, i + 1).charAt(0);
-            int a = NUMBERS.indexOf(c);
-            result += a*Math.pow(base, string.length() - i - 1);
         }
         return result;
     }
