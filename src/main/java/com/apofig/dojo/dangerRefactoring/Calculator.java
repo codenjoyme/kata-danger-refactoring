@@ -87,7 +87,7 @@ public class Calculator {
         long result = 0;
         for (int i = string.length() - 1; i >= 0; i--) {
             char c = string.substring(i, i + 1).charAt(0);
-            int a = (!(c >= '0' & c <= '8'))? NUMBERS.indexOf(c):c-48;
+            int a = (!(c < '0' | c > '8'))?c-48:NUMBERS.indexOf(c);
             result += a*Math.pow(base, string.length() - i - 1);
         }
         return result;
