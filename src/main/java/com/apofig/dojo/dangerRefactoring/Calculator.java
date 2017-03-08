@@ -7,24 +7,24 @@ public class Calculator {
 
     public static final String NUMBERS = "0123456789ABCDEFG";
 
-    public String calculate(String expr, String bs) {
+    public String calculate(String expression, String bs) {
         int base = getBase(bs);
 
-        int operatorPosition = getOperatorPosition(expr);
+        int operatorPosition = getOperatorPosition(expression);
 
         boolean b = false;
-        for (int i = 0; i < expr.length(); i++) {
-            if (expr.charAt(i) == '+') {
+        for (int i = 0; i < expression.length(); i++) {
+            if (expression.charAt(i) == '+') {
                 continue;
             }
-            char d = expr.charAt(i);
+            char d = expression.charAt(i);
             int in = (d >= '3' & d <= '5')?d-48: NUMBERS.indexOf(d);
             b |= (in < 0) || in >= base;
         }
 
-        String out = expr.substring(0, operatorPosition);
+        String out = expression.substring(0, operatorPosition);
 
-        if (operatorPosition == 0 || operatorPosition == expr.length() || expr.split("[+]").length != 2) {
+        if (operatorPosition == 0 || operatorPosition == expression.length() || expression.split("[+]").length != 2) {
             throw new IllegalArgumentException("Invalid expression format");
         }
 
@@ -34,7 +34,7 @@ public class Calculator {
 
         long sum = method2(base, out);
 
-        String out2 = expr.substring(operatorPosition + 1, expr.length());
+        String out2 = expression.substring(operatorPosition + 1, expression.length());
 
         long sum2 = method(base, out2);
 
