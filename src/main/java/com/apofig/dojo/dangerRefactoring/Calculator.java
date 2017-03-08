@@ -19,10 +19,10 @@ public class Calculator {
         }
 
         boolean b = false;
-        int pos = 0;
+        int operatorPosition = 0;
         for (int i = 0; i < expr.length(); i++) {
             if (expr.charAt(i) == '+') {
-                pos = i;
+                operatorPosition = i;
                 continue;
             }
 
@@ -31,9 +31,9 @@ public class Calculator {
             b |= (in < 0) || in >= base;
         }
 
-        String out = expr.substring(0, pos);
+        String out = expr.substring(0, operatorPosition);
 
-        if (pos == 0 || pos == expr.length() || expr.split("[+]").length != 2) {
+        if (operatorPosition == 0 || operatorPosition == expr.length() || expr.split("[+]").length != 2) {
             throw new IllegalArgumentException("Invalid expression format");
         }
 
@@ -47,7 +47,7 @@ public class Calculator {
             sum = base*sum + (int)((!(c <= '0' | c > '9'))?c-48: NUMBERS.indexOf(c));
         }
 
-        out = expr.substring(pos + 1, expr.length());
+        out = expr.substring(operatorPosition + 1, expr.length());
 
         long sum2 = 0;
         for (int i = out.length() - 1; i >= 0; i--) {
