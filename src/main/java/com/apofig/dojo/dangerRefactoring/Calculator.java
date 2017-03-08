@@ -24,15 +24,15 @@ public class Calculator {
             throw new IllegalArgumentException("Invalid number");
         }
 
-        long sum = method2(base, number1String);
+        long number1 = method2(base, number1String);
 
         String number2String = expression.substring(operatorPosition + 1, expression.length());
 
-        long sum2 = method(base, number2String);
+        long number2 = method(base, number2String);
 
-        sum += sum2;
+        number1 += number2;
 
-        String result = toString(sum, base);
+        String result = toString(number1, base);
 
         return result;
     }
