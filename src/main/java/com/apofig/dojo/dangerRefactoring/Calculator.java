@@ -7,8 +7,8 @@ public class Calculator {
 
     public static final String NUMBERS = "0123456789ABCDEFG";
 
-    public String calculate(String expression, String bs) {
-        int base = getBase(bs);
+    public String calculate(String expression, String stringBase) {
+        int base = getBase(stringBase);
 
         int operatorPosition = getOperatorPosition(expression);
 
