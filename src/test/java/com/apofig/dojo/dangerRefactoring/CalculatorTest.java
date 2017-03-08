@@ -38,6 +38,30 @@ public class CalculatorTest {
                 "java.lang.IllegalArgumentException: Invalid base");
     }
 
+    @Test
+    public void shouldException_whenBaseIsOne() {
+        String wrongBase = "1";
+        assertException("1+1", wrongBase,
+                "java.lang.IllegalArgumentException: Invalid base");
+    }
+
+    @Test
+    public void shouldException_whenBaseIsZero() {
+        String wrongBase = "0";
+        assertException("1+1", wrongBase,
+                "java.lang.IllegalArgumentException: Invalid base");
+    }
+
+    @Test
+    public void shouldException_whenBaseIsMoreThan17() {
+        String maxAcceptableBase = "17";
+        assertCalculate("1+1", maxAcceptableBase, "2");
+        
+        String wrongBase = "18";
+        assertException("1+1", wrongBase,
+                "java.lang.IllegalArgumentException: Invalid base");
+    }
+
     private void assertException(String expression, String base, String expected) {
         try {
             assertCalculate(expression, base, "inessential");
