@@ -24,11 +24,11 @@ public class Calculator {
             throw new IllegalArgumentException("Invalid number");
         }
 
-        long number1 = method2(base, number1String);
+        long number1 = parse(base, number1String);
 
         String number2String = expression.substring(operatorPosition + 1, expression.length());
 
-        long number2 = method(base, number2String);
+        long number2 = parse2(base, number2String);
 
         number1 += number2;
 
@@ -74,7 +74,7 @@ public class Calculator {
         return base;
     }
 
-    private long method2(int base, String out) {
+    private long parse(int base, String out) {
         long sum = 0;
         for (int i = 0; i < out.length() ; i++) {
             char c = out.substring(i, i + 1).charAt(0);
@@ -83,8 +83,7 @@ public class Calculator {
         return sum;
     }
 
-    //TODO rename method
-    private long method(int base, String out2) {
+    private long parse2(int base, String out2) {
         long result = 0;
         for (int i = out2.length() - 1; i >= 0; i--) {
             char c = out2.substring(i, i + 1).charAt(0);
