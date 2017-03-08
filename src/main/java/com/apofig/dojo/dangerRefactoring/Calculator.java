@@ -11,15 +11,13 @@ public class Calculator {
         int base = getBase(stringBase);
 
         int operatorPosition = getOperatorPosition(expression);
-
-        boolean isValid = checkValid(expression, base);
-
-        String number1String = expression.substring(0, operatorPosition);
-
         if (operatorPosition == 0 || operatorPosition == expression.length() || expression.split("[+]").length != 2) {
             throw new IllegalArgumentException("Invalid expression format");
         }
 
+        String number1String = expression.substring(0, operatorPosition);
+
+        boolean isValid = checkValid(expression, base);
         if (!isValid) {
             throw new IllegalArgumentException("Invalid number");
         }
