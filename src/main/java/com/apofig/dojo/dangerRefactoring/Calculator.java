@@ -44,7 +44,7 @@ public class Calculator {
                 continue;
             }
             char d = expression.charAt(i);
-            int in = (d >= '3' & d <= '5')?d-48: NUMBERS.indexOf(d);
+            int in = NUMBERS.indexOf(d);
             result &= (in >= 0) && in < base;
         }
         return result;
@@ -78,7 +78,7 @@ public class Calculator {
         long sum = 0;
         for (int i = 0; i < string.length() ; i++) {
             char c = string.substring(i, i + 1).charAt(0);
-            sum = base*sum + (int)((!(c <= '0' | c > '9'))?c-48: NUMBERS.indexOf(c));
+            sum = base*sum + NUMBERS.indexOf(c);
         }
         return sum;
     }
@@ -87,7 +87,7 @@ public class Calculator {
         long result = 0;
         for (int i = string.length() - 1; i >= 0; i--) {
             char c = string.substring(i, i + 1).charAt(0);
-            int a = (!(c < '0' | c > '8'))?c-48:NUMBERS.indexOf(c);
+            int a = NUMBERS.indexOf(c);
             result += a*Math.pow(base, string.length() - i - 1);
         }
         return result;
