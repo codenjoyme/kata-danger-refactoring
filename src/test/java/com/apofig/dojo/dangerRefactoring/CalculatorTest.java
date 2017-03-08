@@ -266,6 +266,14 @@ public class CalculatorTest {
                 "java.lang.IllegalArgumentException: Invalid number");
     }
 
+    @Test
+    public void shouldException_whenUseAnotherOperation() {
+        String wrongOperation = "-";
+
+        assertException("1" + wrongOperation + "1", "2",
+                "java.lang.IllegalArgumentException: Invalid expression format");
+    }
+
     private void assertException(String expression, String base, String expected) {
         try {
             assertCalculate(expression, base, "inessential");
