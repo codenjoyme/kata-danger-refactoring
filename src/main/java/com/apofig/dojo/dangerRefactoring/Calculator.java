@@ -58,13 +58,13 @@ public class Calculator {
 
         sum += sum2;
 
-        String result = qwe(base, sum);
+        String result = qwe(sum, base);
 
         return result;
     }
 
     // TODO change qwe name
-    private String qwe(int base, long number) {
+    private String qwe(long number, int base) {
         String result = "";
         long l = number;
         do {
