@@ -75,12 +75,12 @@ public class Calculator {
     }
 
     private long parse(int base, String string) {
-        long sum = 0;
+        long result = 0;
         for (int i = 0; i < string.length() ; i++) {
             char c = string.substring(i, i + 1).charAt(0);
-            sum = base*sum + NUMBERS.indexOf(c);
+            result = base*result + NUMBERS.indexOf(c);
         }
-        return sum;
+        return result;
     }
 
     private long parse2(int base, String string) {
