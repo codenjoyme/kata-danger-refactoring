@@ -12,7 +12,7 @@ public class Calculator {
 
         int operatorPosition = getOperatorPosition(expression);
 
-        boolean isNotValid = checkValid(expression, base);
+        boolean isValid = checkValid(expression, base);
 
         String out = expression.substring(0, operatorPosition);
 
@@ -20,7 +20,7 @@ public class Calculator {
             throw new IllegalArgumentException("Invalid expression format");
         }
 
-        if (isNotValid) {
+        if (!isValid) {
             throw new IllegalArgumentException("Invalid number");
         }
 
@@ -38,16 +38,16 @@ public class Calculator {
     }
 
     private boolean checkValid(String expression, int base) {
-        boolean isNotValid = false;
+        boolean valid = true;
         for (int i = 0; i < expression.length(); i++) {
             if (expression.charAt(i) == '+') {
                 continue;
             }
             char d = expression.charAt(i);
             int in = (d >= '3' & d <= '5')?d-48: NUMBERS.indexOf(d);
-            isNotValid |= (in < 0) || in >= base;
+            valid &= !((in < 0) || in >= base);
         }
-        return isNotValid;
+        return valid;
     }
 
     private int getOperatorPosition(String expr) {
