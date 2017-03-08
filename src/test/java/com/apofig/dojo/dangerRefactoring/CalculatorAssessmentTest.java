@@ -13,26 +13,29 @@ public class CalculatorAssessmentTest {
 
     @Test
     public void test(){
-        String validChars = "0123456789ABCDEFG+";
-        String invalidChars = "H-/*";
-        String charsForCombination = validChars + invalidChars;
+        List<String> inputs = new LinkedList<>();
+        inputs.add("1+1^2");
+        inputs.add("1+10^2");
+        inputs.add("10+1^2");
+        inputs.add("10+10^2");
+        inputs.add("11+11^2");
+        inputs.add("101+111^2");
+        inputs.add("0+101^2");
+        inputs.add("101+0^2");
 
-        Map<String, String> result = calculateAll(
-                combination(charsForCombination, 5),
-                combination(charsForCombination, 2));
-
+        Map<String, String> result = calculateAll(inputs);
         System.out.println(result);
     }
 
-    private Map<String, String> calculateAll(List<String> expressionList, List<String> baseList) {
+    private Map<String, String> calculateAll(List<String> inputs) {
         Map<String, String> result = new LinkedHashMap<String, String>();
 
-        for (String expression : expressionList) {
-            for (String base : baseList) {
-                String value = callMethod(expression, base);
-
-                result.put(expression + "^" + base, value);
-            }
+        for (String input : inputs) {
+            String[] split = input.split("\\^");
+            String expression = split[0];
+            String base = split[1];
+            String value = callMethod(expression, base);
+            result.put(input, value);
         }
 
         return result;
@@ -44,30 +47,6 @@ public class CalculatorAssessmentTest {
         } catch (Exception e) {
             return e.toString();
         }
-    }
-
-    private List<String> combination(String chars, int length) {
-        String CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        List<String> result = new LinkedList<>();
-        int base = chars.length();
-        long max = (long) Math.pow(base, length);
-
-        for (long i = 0; i < max; i++) {
-            String string = Long.toString(i, base).toUpperCase();
-
-            StringBuilder resultString = new StringBuilder();
-            for (int j = 0; j < string.length(); j++) {
-                char ch = string.charAt(j);
-                int indexOf = CHARS.indexOf(ch);
-                char ch2 = chars.charAt(indexOf);
-
-                resultString.append(ch2);
-            }
-
-            result.add(resultString.toString());
-        }
-
-        return result;
     }
 
     private String calculate(String expression, String base) {
