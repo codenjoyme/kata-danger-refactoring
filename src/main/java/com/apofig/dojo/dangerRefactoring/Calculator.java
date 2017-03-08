@@ -8,15 +8,7 @@ public class Calculator {
     public static final String NUMBERS = "0123456789ABCDEFG";
 
     public String calculate(String expr, String bs) {
-        int base = 0;
-        try {
-            base = Integer.valueOf(bs);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid base", e);
-        }
-        if (base > NUMBERS.length() || base <= 1) {
-            throw new IllegalArgumentException("Invalid base");
-        }
+        int base = getBase(bs);
 
         boolean b = false;
         int operatorPosition = 0;
@@ -52,6 +44,19 @@ public class Calculator {
         String result = toString(sum, base);
 
         return result;
+    }
+
+    private int getBase(String bs) {
+        int base = 0;
+        try {
+            base = Integer.valueOf(bs);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Invalid base", e);
+        }
+        if (base > NUMBERS.length() || base <= 1) {
+            throw new IllegalArgumentException("Invalid base");
+        }
+        return base;
     }
 
     private long method2(int base, String out) {
