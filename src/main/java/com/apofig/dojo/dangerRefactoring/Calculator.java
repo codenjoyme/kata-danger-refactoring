@@ -41,11 +41,7 @@ public class Calculator {
             throw new IllegalArgumentException("Invalid number");
         }
 
-        long sum = 0;
-        for (int i = 0; i < out.length() ; i++) {
-            char c = out.substring(i, i + 1).charAt(0);
-            sum = base*sum + (int)((!(c <= '0' | c > '9'))?c-48: NUMBERS.indexOf(c));
-        }
+        long sum = method2(base, out);
 
         String out2 = expr.substring(operatorPosition + 1, expr.length());
 
@@ -56,6 +52,15 @@ public class Calculator {
         String result = toString(sum, base);
 
         return result;
+    }
+
+    private long method2(int base, String out) {
+        long sum = 0;
+        for (int i = 0; i < out.length() ; i++) {
+            char c = out.substring(i, i + 1).charAt(0);
+            sum = base*sum + (int)((!(c <= '0' | c > '9'))?c-48: NUMBERS.indexOf(c));
+        }
+        return sum;
     }
 
     //TODO rename method
