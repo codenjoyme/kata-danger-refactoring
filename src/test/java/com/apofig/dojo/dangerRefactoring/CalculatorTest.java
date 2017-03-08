@@ -3,6 +3,7 @@ package com.apofig.dojo.dangerRefactoring;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class CalculatorTest {
 
@@ -28,6 +29,18 @@ public class CalculatorTest {
         assertCalculate("101+111", "2", "1100");
         assertCalculate("0+101", "2", "101");
         assertCalculate("101+0", "2", "101");
+    }
+
+    @Test
+    public void shouldException_whenBaseIsNotANumber() {
+        try {
+            String wrong = "qwe";
+            assertCalculate("1+1", wrong, "10");
+            fail("Expected exception");
+        } catch (Exception e) {
+            assertEquals("java.lang.IllegalArgumentException: Invalid base",
+                    e.toString());
+        }
     }
 
     private void assertCalculate(String expression, String base, String expected) {
