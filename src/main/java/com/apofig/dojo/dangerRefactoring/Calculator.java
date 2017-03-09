@@ -3,7 +3,7 @@ package com.apofig.dojo.dangerRefactoring;
 /**
  * Created by indigo on 2017-03-08.
  */
-public class Calculator {
+public class Calculator implements Converter {
 
     public static final String NUMBERS = "0123456789ABCDEFG";
     private int base;
@@ -22,14 +22,14 @@ public class Calculator {
         }
 
         String number1String = expression.substring(0, operatorPosition);
-        long number1 = parse(number1String);
+        long number1 = convertFromString(number1String);
 
         String number2String = expression.substring(operatorPosition + 1, expression.length());
-        long number2 = parse(number2String);
+        long number2 = convertFromString(number2String);
 
         long sum = number1 + number2;
 
-        String result = toString(sum);
+        String result = convertToString(sum);
         return result;
     }
 
@@ -70,7 +70,8 @@ public class Calculator {
         return base;
     }
 
-    private long parse(String string) {
+    @Override
+    public long convertFromString(String string) {
         long result = 0;
         for (int i = 0; i < string.length() ; i++) {
             char c = string.substring(i, i + 1).charAt(0);
@@ -79,7 +80,8 @@ public class Calculator {
         return result;
     }
 
-    private String toString(long number) {
+    @Override
+    public String convertToString(long number) {
         String result = "";
         long l = number;
         do {
