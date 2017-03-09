@@ -35,6 +35,11 @@ public class RomanConverter implements Converter {
     }
 
     @Override
+    public boolean checkValid(String expression) {
+        return false; // TODO to use validateNumber(rom);
+    }
+
+    @Override
     public long convertFromString(String rom) {
         validateNumber(rom);
 
