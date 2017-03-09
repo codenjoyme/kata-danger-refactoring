@@ -1,5 +1,6 @@
 package com.apofig.dojo.dangerRefactoring;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -281,6 +282,13 @@ public class CalculatorTest {
         } catch (Exception e) {
             assertEquals(expected, e.toString());
         }
+    }
+
+    @Ignore
+    @Test
+    public void shouldException_caseX() {
+        assertException("+21+", "10",
+                "java.lang.StringIndexOutOfBoundsException: String index out of range: 24");
     }
 
     private void assertCalculate(String expression, String base, String expected) {
