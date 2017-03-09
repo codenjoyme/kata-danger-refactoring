@@ -15,23 +15,20 @@ public class Calculator {
             throw new IllegalArgumentException("Invalid expression format");
         }
 
-        String number1String = expression.substring(0, operatorPosition);
-
         boolean isValid = checkValid(expression, base);
         if (!isValid) {
             throw new IllegalArgumentException("Invalid number");
         }
 
+        String number1String = expression.substring(0, operatorPosition);
         long number1 = parse(base, number1String);
 
         String number2String = expression.substring(operatorPosition + 1, expression.length());
-
         long number2 = parse(base, number2String);
 
         number1 += number2;
 
         String result = toString(number1, base);
-
         return result;
     }
 
@@ -71,7 +68,6 @@ public class Calculator {
         }
         return base;
     }
-
 
     private long parse(int base, String string) {
         long result = 0;
