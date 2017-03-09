@@ -28,9 +28,9 @@ public class Calculator  {
     }
 
     private int getOperatorPosition(String expr) {
-        for (int i = 0; i < expr.length(); i++) {
-            if (expr.charAt(i) == '+') {
-                return i;
+        for (int index = 0; index < expr.length(); index++) {
+            if (expr.charAt(index) == '+') {
+                return index;
             }
         }
         return 0;
