@@ -13,42 +13,38 @@ public class BaseNumberConverter implements Converter {
         base = getBase(stringBase);
     }
 
-    private int getBase(String bs) {
-        int base = 0;
+    private int getBase(String stringBase) {
+        int result = 0;
         try {
-            base = Integer.valueOf(bs);
+            result = Integer.valueOf(stringBase);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException("Invalid base", e);
         }
-        if (base > NUMBERS.length() || base <= 1) {
+        if (result > NUMBERS.length() || result <= 1) {
             throw new IllegalArgumentException("Invalid base");
-        }
-        return base;
-    }
-
-    private boolean checkValid(String number) {
-        boolean result = true;
-        for (int i = 0; i < number.length(); i++) {
-//            if (number.charAt(i) == '+') {
-//                continue;
-//            }
-            char d = number.charAt(i);
-            int in = NUMBERS.indexOf(d);
-            result &= (in >= 0) && in < base;
         }
         return result;
     }
 
-    @Override
-    public long convertFromString(String string) {
-        boolean isValid = checkValid(string);
-        if (!isValid) {
+    private void validateNumber(String number) {
+        boolean valid = true;
+        for (int index = 0; index < number.length(); index++) {
+            char d = number.charAt(index);
+            int in = NUMBERS.indexOf(d);
+            valid &= (in >= 0) && in < base;
+        }
+        if (!valid) {
             throw new IllegalArgumentException("Invalid number");
         }
+    }
+
+    @Override
+    public long convertFromString(String string) {
+        validateNumber(string);
 
         long result = 0;
-        for (int i = 0; i < string.length() ; i++) {
-            char c = string.substring(i, i + 1).charAt(0);
+        for (int index = 0; index < string.length() ; index++) {
+            char c = string.substring(index, index + 1).charAt(0);
             result = base*result + NUMBERS.indexOf(c);
         }
         return result;
