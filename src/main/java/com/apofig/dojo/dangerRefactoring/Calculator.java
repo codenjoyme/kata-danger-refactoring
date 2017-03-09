@@ -26,9 +26,9 @@ public class Calculator {
         String number2String = expression.substring(operatorPosition + 1, expression.length());
         long number2 = parse(base, number2String);
 
-        number1 += number2;
+        long sum = number1 + number2;
 
-        String result = toString(number1, base);
+        String result = toString(sum, base);
         return result;
     }
 
