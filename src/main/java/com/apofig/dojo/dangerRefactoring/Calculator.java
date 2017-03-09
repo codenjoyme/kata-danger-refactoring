@@ -8,11 +8,7 @@ public class Calculator  {
     private Converter converter;
 
     public String calculate(String expression, String stringBase) {
-        if (stringBase.equals("R")) {
-            converter = new RomanConverter();
-        } else {
-            converter = new BaseNumberConverter(stringBase);
-        }
+        converter = getConverter(stringBase);
 
         int operatorPosition = getOperatorPosition(expression);
         if (operatorPosition == 0 || operatorPosition == expression.length() || expression.split("[+]").length != 2) {
@@ -29,6 +25,14 @@ public class Calculator  {
 
         String result = converter.convertToString(sum);
         return result;
+    }
+
+    private Converter getConverter(String stringBase) {
+        if (stringBase.equals("R")) {
+            return new RomanConverter();
+        } else {
+            return new BaseNumberConverter(stringBase);
+        }
     }
 
     private int getOperatorPosition(String expr) {
