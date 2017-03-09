@@ -291,6 +291,13 @@ public class CalculatorTest {
                 "java.lang.StringIndexOutOfBoundsException: String index out of range: 24");
     }
 
+    @Test
+    public void shouldWorkWithRoman() {
+        assertCalculate("III+III", "R", "VI");
+        assertCalculate("IV+VI", "R", "X");
+        assertCalculate("XII+IX", "R", "XXI");
+    }
+
     private void assertCalculate(String expression, String base, String expected) {
         Calculator calculator = new Calculator();
         String result = calculator.calculate(expression, base);
