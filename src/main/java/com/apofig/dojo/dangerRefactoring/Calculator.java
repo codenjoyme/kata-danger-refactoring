@@ -15,11 +15,6 @@ public class Calculator  {
             throw new IllegalArgumentException("Invalid expression format");
         }
 
-        boolean isValid = converter.checkValid(expression);
-        if (!isValid) {
-            throw new IllegalArgumentException("Invalid number");
-        }
-
         String number1String = expression.substring(0, operatorPosition);
         long number1 = converter.convertFromString(number1String);
 

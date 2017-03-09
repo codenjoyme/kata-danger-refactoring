@@ -26,14 +26,13 @@ public class BaseNumberConverter implements Converter {
         return base;
     }
 
-    @Override // TODO to check only numbers not expressions
-    public boolean checkValid(String expression) {
+    private boolean checkValid(String number) {
         boolean result = true;
-        for (int i = 0; i < expression.length(); i++) {
-            if (expression.charAt(i) == '+') {
-                continue;
-            }
-            char d = expression.charAt(i);
+        for (int i = 0; i < number.length(); i++) {
+//            if (number.charAt(i) == '+') {
+//                continue;
+//            }
+            char d = number.charAt(i);
             int in = NUMBERS.indexOf(d);
             result &= (in >= 0) && in < base;
         }
@@ -42,6 +41,11 @@ public class BaseNumberConverter implements Converter {
 
     @Override
     public long convertFromString(String string) {
+        boolean isValid = checkValid(string);
+        if (!isValid) {
+            throw new IllegalArgumentException("Invalid number");
+        }
+
         long result = 0;
         for (int i = 0; i < string.length() ; i++) {
             char c = string.substring(i, i + 1).charAt(0);
