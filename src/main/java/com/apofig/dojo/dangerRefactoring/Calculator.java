@@ -28,14 +28,12 @@ public class Calculator  {
     }
 
     private int getOperatorPosition(String expr) {
-        int operatorPosition = 0;
         for (int i = 0; i < expr.length(); i++) {
             if (expr.charAt(i) == '+') {
-                operatorPosition = i;
-                continue;
+                return i;
             }
         }
-        return operatorPosition;
+        return 0;
     }
 
 
