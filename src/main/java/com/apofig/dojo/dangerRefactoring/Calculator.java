@@ -6,33 +6,34 @@ package com.apofig.dojo.dangerRefactoring;
 public class Calculator {
 
     public static final String NUMBERS = "0123456789ABCDEFG";
+    private int base;
 
     public String calculate(String expression, String stringBase) {
-        int base = getBase(stringBase);
+        base = getBase(stringBase);
 
         int operatorPosition = getOperatorPosition(expression);
         if (operatorPosition == 0 || operatorPosition == expression.length() || expression.split("[+]").length != 2) {
             throw new IllegalArgumentException("Invalid expression format");
         }
 
-        boolean isValid = checkValid(expression, base);
+        boolean isValid = checkValid(expression);
         if (!isValid) {
             throw new IllegalArgumentException("Invalid number");
         }
 
         String number1String = expression.substring(0, operatorPosition);
-        long number1 = parse(base, number1String);
+        long number1 = parse(number1String);
 
         String number2String = expression.substring(operatorPosition + 1, expression.length());
-        long number2 = parse(base, number2String);
+        long number2 = parse(number2String);
 
         long sum = number1 + number2;
 
-        String result = toString(sum, base);
+        String result = toString(sum);
         return result;
     }
 
-    private boolean checkValid(String expression, int base) {
+    private boolean checkValid(String expression) {
         boolean result = true;
         for (int i = 0; i < expression.length(); i++) {
             if (expression.charAt(i) == '+') {
@@ -69,7 +70,7 @@ public class Calculator {
         return base;
     }
 
-    private long parse(int base, String string) {
+    private long parse(String string) {
         long result = 0;
         for (int i = 0; i < string.length() ; i++) {
             char c = string.substring(i, i + 1).charAt(0);
@@ -78,7 +79,7 @@ public class Calculator {
         return result;
     }
 
-    private String toString(long number, int base) {
+    private String toString(long number) {
         String result = "";
         long l = number;
         do {
